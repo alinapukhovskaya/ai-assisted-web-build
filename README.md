@@ -12,14 +12,19 @@ This piece sits alongside my knowledge-governance case studies for a reason. Tho
 
 ![The Coreso Collaborative home page](assets/01-home.png)
 
----
+## What This Work Demonstrates
 
-## What This Repository Contains
+- **AI fluency with judgment.** I direct Claude Code and Claude's design tool to real output, and I catch what they get wrong. The value is in the second half of that sentence.
+- **End-to-end ownership.** Brand and content decisions, architecture, build, debugging, and deployment ran through one accountable person.
+- **Content governance applied to a live site.** Consent behavior, privacy and terms, per-page form handling, and a maintainable structure are the same content-governance discipline I bring to knowledge work.
+- **A bias toward verifying against reality.** Every page was checked in a real browser, every form was driven end to end, and standing checks were written so the same class of defect cannot return.
 
-- **This file:** the case study narrative: the brief, the working method, the build pipeline, the defects caught, and what the work demonstrates.
-- **assets/:** screenshots of the live site.
+## Tools
 
----
+- **Claude Code** for the build pipeline, the static conversion, and the debugging
+- **Claude's design tool** for the visual design and page layouts
+- Headless Chrome to render and freeze the design output
+- Plain HTML, CSS, and JavaScript in production, with no framework, no build step, and no runtime dependencies
 
 ## The Brief
 
@@ -28,8 +33,6 @@ Coreso Collaborative is my independent consulting practice, developed alongside 
 The constraint that shaped everything came from the starting material. The visual design left Claude's design tool as `.dc.html` files that depend on a React runtime loaded from a content delivery network at page load. That format is fine for previewing a design. It is not something you host as a real website, because it is slow, fragile, and dependent on a third party staying available. The design was right; the delivery format was not.
 
 So the core problem was a translation problem: take a React-runtime design export and turn it into plain, self-contained HTML that behaves identically, without rebuilding eleven pages by hand.
-
----
 
 ## How I Worked with Claude Code
 
@@ -40,8 +43,6 @@ I treated Claude Code as an execution partner, not an oracle. The pattern on eve
 3. **I verified the result against reality, not against the claim.** Generated code that looks finished is not finished. Every page was checked in a real browser, and several outputs reported as complete were quietly broken in ways only inspection caught.
 
 The value I added was not typing. It was framing the problem correctly, holding the quality bar, and having enough technical judgment to notice when a confident answer was wrong.
-
----
 
 ## The Build Pipeline
 
@@ -62,8 +63,6 @@ In plain terms: I had the design rendered by a real browser, captured the finish
 The result is eleven pages of plain HTML, five small scripts, self-hosted fonts, one favicon, and one file to upload. There is no server code, no framework, and no dependency on a content delivery network.
 
 ![One of the service pages built through the pipeline](assets/02-service-page.png)
-
----
 
 ## Defects I Caught and Directed to a Fix
 
@@ -91,8 +90,6 @@ The redesigned banner rendered as cream text on a cream background, which made i
 
 The through-line is consistent: in every case the generated output reported success. The difference between a shipped defect and a working site was inspection and judgment, not the generation itself.
 
----
-
 ## The Four Interactive Components, Rebuilt by Hand
 
 A frozen snapshot of a React application keeps how it looked, not how it worked. Four pieces had real logic that did not survive the freeze, so I had them rebuilt in plain JavaScript and tested each one end to end:
@@ -105,24 +102,6 @@ A frozen snapshot of a React application keeps how it looked, not how it worked.
 Each was driven through a full submission in an automated browser before launch, with the submission endpoint mocked so testing never sent real leads.
 
 ![The reliability quiz landing screen, one of the four rebuilt components](assets/03-interactive.png)
-
----
-
-## What This Work Demonstrates
-
-- **AI fluency with judgment.** I direct Claude Code and Claude's design tool to real output, and I catch what they get wrong. The value is in the second half of that sentence.
-- **End-to-end ownership.** Brand and content decisions, architecture, build, debugging, and deployment ran through one accountable person.
-- **Content governance applied to a live site.** Consent behavior, privacy and terms, per-page form handling, and a maintainable structure are the same content-governance discipline I bring to knowledge work.
-- **A bias toward verifying against reality.** Every page was checked in a real browser, every form was driven end to end, and standing checks were written so the same class of defect cannot return.
-
----
-
-## Tools
-
-- **Claude Code** for the build pipeline, the static conversion, and the debugging
-- **Claude's design tool** for the visual design and page layouts
-- Headless Chrome to render and freeze the design output
-- Plain HTML, CSS, and JavaScript in production, with no framework, no build step, and no runtime dependencies
 
 ---
 
