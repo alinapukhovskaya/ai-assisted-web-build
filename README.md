@@ -10,8 +10,6 @@ This piece sits alongside my knowledge-governance case studies for a reason. Tho
 
 > This is a curated case study, not the deployable source. It documents the process and the judgment calls. Form endpoints, calendar links, and full page source are omitted.
 
-![The Coreso Collaborative home page](assets/01-home.png)
-
 ## What This Work Demonstrates
 
 - **AI fluency with judgment.** I direct Claude Code and Claude's design tool to real output, and I catch what they get wrong. The value is in the second half of that sentence.
@@ -25,6 +23,8 @@ This piece sits alongside my knowledge-governance case studies for a reason. Tho
 - **Claude's design tool** for the visual design and page layouts
 - Headless Chrome to render and freeze the design output
 - Plain HTML, CSS, and JavaScript in production, with no framework, no build step, and no runtime dependencies
+
+![The Coreso Collaborative home page](assets/01-home.png)
 
 ## The Brief
 
@@ -47,6 +47,7 @@ The value I added was not typing. It was framing the problem correctly, holding 
 ## The Build Pipeline
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#f4efe4','primaryTextColor':'#33404a','primaryBorderColor':'#a98a55','lineColor':'#3d4954','fontFamily':'Georgia, serif'}}}%%
 flowchart TD
     A["Claude design tool<br/>11 .dc.html exports<br/>(React runtime, CDN-loaded)"] --> B["Serve the design folder locally"]
     B --> C["Render each page in headless Chrome<br/>freeze the rendered DOM to static HTML"]
@@ -61,8 +62,6 @@ flowchart TD
 In plain terms: I had the design rendered by a real browser, captured the finished HTML, then removed everything the page did not need to stand on its own. Anything interactive that could not survive that step was rebuilt by hand.
 
 The result is eleven pages of plain HTML, five small scripts, self-hosted fonts, one favicon, and one file to upload. There is no server code, no framework, and no dependency on a content delivery network.
-
-![One of the service pages built through the pipeline](assets/02-service-page.png)
 
 ## Defects I Caught and Directed to a Fix
 
